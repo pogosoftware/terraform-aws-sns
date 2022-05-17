@@ -28,3 +28,20 @@ module "sns_topic" {
   firehose_failure_feedback_role_arn       = var.sns_topic_firehose_failure_feedback_role_arn
   tags                                     = var.sns_topic_tags
 }
+
+module "sns_subscription" {
+  source = "./modules/sns_subscription"
+
+  count = var.create_sns_subscription ? 1 : 0
+
+  endpoint                        = var.sns_subscription_endpoint
+  protocol                        = var.sns_subscription_protocol
+  subscription_role_arn           = var.sns_subscription_role_arn
+  topic_arn                       = local.sns_subscription_topic_arn
+  confirmation_timeout_in_minutes = var.sns_subscription_confirmation_timeout_in_minutes
+  delivery_policy                 = var.sns_subscription_delivery_policy
+  endpoint_auto_confirms          = var.sns_subscription_endpoint_auto_confirms
+  filter_policy                   = var.sns_subscription_filter_policy
+  raw_message_delivery            = var.sns_subscription_raw_message_delivery
+  redrive_policy                  = var.sns_subscription_redrive_policy
+}
