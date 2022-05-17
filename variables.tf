@@ -149,3 +149,72 @@ variable "sns_topic_tags" {
   description = "Key-value map of resource tags. If configured with a provider default_tags configuration block present, tags with matching keys will overwrite those defined at the provider-level"
   type        = map(string)
 }
+
+##########################################################################
+### SNS_SUBSCRIPTION
+##########################################################################
+variable "create_sns_subscription" {
+  default     = true
+  description = "Determinate to create `sns_subscription` resource or not"
+  type        = bool
+}
+
+variable "sns_subscription_endpoint" {
+  default     = null
+  description = "Required if `create_sns_subscription` is set to `true`. Endpoint to send data to. The contents vary with the protocol"
+  type        = string
+}
+
+variable "sns_subscription_protocol" {
+  default     = null
+  description = "Required if `create_sns_subscription` is set to `true`. Protocol to use. Valid values are: sqs, sms, lambda, firehose, and application. Protocols email, email-json, http and https are also valid but partially supported"
+  type        = string
+}
+
+variable "sns_subscription_role_arn" {
+  default     = null
+  description = "Required if `create_sns_subscription` is set to `true`. ARN of the IAM role to publish to Kinesis Data Firehose delivery stream"
+  type        = string
+}
+
+variable "sns_subscription_topic_arn" {
+  default     = null
+  description = "Required if `create_sns_subscription` is set to `true` and `create_sns_topic` is set to `false`. ARN of the SNS topic to subscribe to"
+  type        = string
+}
+
+variable "sns_subscription_confirmation_timeout_in_minutes" {
+  default     = 1
+  description = "Integer indicating number of minutes to wait in retrying mode for fetching subscription arn before marking it as failure. Only applicable for http and https protocols. Default is 1"
+  type        = number
+}
+
+variable "sns_subscription_delivery_policy" {
+  default     = null
+  description = "JSON String with the delivery policy (retries, backoff, etc.) that will be used in the subscription - this only applies to HTTP/S subscriptions"
+  type        = string
+}
+
+variable "sns_subscription_endpoint_auto_confirms" {
+  default     = false
+  description = "Whether the endpoint is capable of auto confirming subscription (e.g., PagerDuty). Default is `false`"
+  type        = bool
+}
+
+variable "sns_subscription_filter_policy" {
+  default     = null
+  description = "JSON String with the filter policy that will be used in the subscription to filter messages seen by the target resource"
+  type        = string
+}
+
+variable "sns_subscription_raw_message_delivery" {
+  default     = false
+  description = "Whether to enable raw message delivery (the original message is directly passed, not wrapped in JSON with the original message in the message property). Default is false"
+  type        = bool
+}
+
+variable "sns_subscription_redrive_policy" {
+  default     = null
+  description = "JSON String with the redrive policy that will be used in the subscription"
+  type        = string
+}

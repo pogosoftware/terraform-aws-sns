@@ -15,6 +15,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_sns_subscription"></a> [sns\_subscription](#module\_sns\_subscription) | ./modules/sns_subscription | n/a |
 | <a name="module_sns_topic"></a> [sns\_topic](#module\_sns\_topic) | ./modules/sns_topic | n/a |
 
 ## Resources
@@ -25,7 +26,18 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_create_sns_subscription"></a> [create\_sns\_subscription](#input\_create\_sns\_subscription) | Determinate to create `sns_subscription` resource or not | `bool` | `true` | no |
 | <a name="input_create_sns_topic"></a> [create\_sns\_topic](#input\_create\_sns\_topic) | Determinate to create `sns_topic` resource or not | `bool` | `true` | no |
+| <a name="input_sns_subscription_confirmation_timeout_in_minutes"></a> [sns\_subscription\_confirmation\_timeout\_in\_minutes](#input\_sns\_subscription\_confirmation\_timeout\_in\_minutes) | Integer indicating number of minutes to wait in retrying mode for fetching subscription arn before marking it as failure. Only applicable for http and https protocols. Default is 1 | `number` | `1` | no |
+| <a name="input_sns_subscription_delivery_policy"></a> [sns\_subscription\_delivery\_policy](#input\_sns\_subscription\_delivery\_policy) | JSON String with the delivery policy (retries, backoff, etc.) that will be used in the subscription - this only applies to HTTP/S subscriptions | `string` | `null` | no |
+| <a name="input_sns_subscription_endpoint"></a> [sns\_subscription\_endpoint](#input\_sns\_subscription\_endpoint) | Required if `create_sns_subscription` is set to `true`. Endpoint to send data to. The contents vary with the protocol | `string` | `null` | no |
+| <a name="input_sns_subscription_endpoint_auto_confirms"></a> [sns\_subscription\_endpoint\_auto\_confirms](#input\_sns\_subscription\_endpoint\_auto\_confirms) | Whether the endpoint is capable of auto confirming subscription (e.g., PagerDuty). Default is `false` | `bool` | `false` | no |
+| <a name="input_sns_subscription_filter_policy"></a> [sns\_subscription\_filter\_policy](#input\_sns\_subscription\_filter\_policy) | JSON String with the filter policy that will be used in the subscription to filter messages seen by the target resource | `string` | `null` | no |
+| <a name="input_sns_subscription_protocol"></a> [sns\_subscription\_protocol](#input\_sns\_subscription\_protocol) | Required if `create_sns_subscription` is set to `true`. Protocol to use. Valid values are: sqs, sms, lambda, firehose, and application. Protocols email, email-json, http and https are also valid but partially supported | `string` | `null` | no |
+| <a name="input_sns_subscription_raw_message_delivery"></a> [sns\_subscription\_raw\_message\_delivery](#input\_sns\_subscription\_raw\_message\_delivery) | Whether to enable raw message delivery (the original message is directly passed, not wrapped in JSON with the original message in the message property). Default is false | `bool` | `false` | no |
+| <a name="input_sns_subscription_redrive_policy"></a> [sns\_subscription\_redrive\_policy](#input\_sns\_subscription\_redrive\_policy) | JSON String with the redrive policy that will be used in the subscription | `string` | `null` | no |
+| <a name="input_sns_subscription_role_arn"></a> [sns\_subscription\_role\_arn](#input\_sns\_subscription\_role\_arn) | Required if `create_sns_subscription` is set to `true`. ARN of the IAM role to publish to Kinesis Data Firehose delivery stream | `string` | `null` | no |
+| <a name="input_sns_subscription_topic_arn"></a> [sns\_subscription\_topic\_arn](#input\_sns\_subscription\_topic\_arn) | Required if `create_sns_subscription` is set to `true` and `create_sns_topic` is set to `false`. ARN of the SNS topic to subscribe to | `string` | `null` | no |
 | <a name="input_sns_topic_application_failure_feedback_role_arn"></a> [sns\_topic\_application\_failure\_feedback\_role\_arn](#input\_sns\_topic\_application\_failure\_feedback\_role\_arn) | IAM role for failure feedback | `string` | `null` | no |
 | <a name="input_sns_topic_application_success_feedback_role_arn"></a> [sns\_topic\_application\_success\_feedback\_role\_arn](#input\_sns\_topic\_application\_success\_feedback\_role\_arn) | IAM role permitted to receive success feedback for this topic | `string` | `null` | no |
 | <a name="input_sns_topic_application_success_feedback_sample_rate"></a> [sns\_topic\_application\_success\_feedback\_sample\_rate](#input\_sns\_topic\_application\_success\_feedback\_sample\_rate) | Percentage of success to sample | `string` | `null` | no |
@@ -55,6 +67,11 @@ No resources.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_sns_subscription_arn"></a> [sns\_subscription\_arn](#output\_sns\_subscription\_arn) | ARN of the subscription |
+| <a name="output_sns_subscription_confirmation_was_authenticated"></a> [sns\_subscription\_confirmation\_was\_authenticated](#output\_sns\_subscription\_confirmation\_was\_authenticated) | Whether the subscription confirmation request was authenticated |
+| <a name="output_sns_subscription_id"></a> [sns\_subscription\_id](#output\_sns\_subscription\_id) | ARN of the subscription |
+| <a name="output_sns_subscription_owner_id"></a> [sns\_subscription\_owner\_id](#output\_sns\_subscription\_owner\_id) | AWS account ID of the subscription's owner |
+| <a name="output_sns_subscription_pending_confirmation"></a> [sns\_subscription\_pending\_confirmation](#output\_sns\_subscription\_pending\_confirmation) | Whether the subscription has not been confirmed |
 | <a name="output_sns_topic_arn"></a> [sns\_topic\_arn](#output\_sns\_topic\_arn) | The ARN of the SNS topic, as a more obvious property (clone of id) |
 | <a name="output_sns_topic_id"></a> [sns\_topic\_id](#output\_sns\_topic\_id) | The ARN of the SNS topic |
 | <a name="output_sns_topic_name"></a> [sns\_topic\_name](#output\_sns\_topic\_name) | The ARN of the SNS topic |
