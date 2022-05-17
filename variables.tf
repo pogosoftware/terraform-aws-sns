@@ -218,3 +218,18 @@ variable "sns_subscription_redrive_policy" {
   description = "JSON String with the redrive policy that will be used in the subscription"
   type        = string
 }
+
+##########################################################################
+### SNS_TOPIC_POLICY
+##########################################################################
+variable "attach_sns_topic_policy" {
+  default     = false
+  description = "Determinate to attach policy to `sns_topic` or not"
+  type        = bool
+}
+
+variable "sns_topic_arn" {
+  default     = null
+  description = "ARN of the SNS topic"
+  type        = string
+}

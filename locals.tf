@@ -3,4 +3,6 @@ locals {
   sns_topic_name_prefix = var.use_sns_topic_name_prefix ? format("%s-", var.sns_topic_name) : null
 
   sns_subscription_topic_arn = var.create_sns_topic ? module.sns_topic[0].id : var.sns_subscription_topic_arn
+
+  sns_topic_arn = var.create_sns_topic ? module.sns_topic[0].arn : var.sns_topic_arn
 }

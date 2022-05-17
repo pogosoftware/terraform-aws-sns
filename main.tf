@@ -45,3 +45,12 @@ module "sns_subscription" {
   raw_message_delivery            = var.sns_subscription_raw_message_delivery
   redrive_policy                  = var.sns_subscription_redrive_policy
 }
+
+module "sns_topic_policy" {
+  source = "./modules/sns_topic_policy"
+
+  count = var.attach_sns_topic_policy ? 1 : 0
+
+  arn    = local.sns_topic_arn
+  policy = var.sns_topic_policy
+}

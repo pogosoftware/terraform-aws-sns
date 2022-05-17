@@ -17,6 +17,7 @@ No providers.
 |------|--------|---------|
 | <a name="module_sns_subscription"></a> [sns\_subscription](#module\_sns\_subscription) | ./modules/sns_subscription | n/a |
 | <a name="module_sns_topic"></a> [sns\_topic](#module\_sns\_topic) | ./modules/sns_topic | n/a |
+| <a name="module_sns_topic_policy"></a> [sns\_topic\_policy](#module\_sns\_topic\_policy) | ./modules/sns_topic_policy | n/a |
 
 ## Resources
 
@@ -26,6 +27,7 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_attach_sns_topic_policy"></a> [attach\_sns\_topic\_policy](#input\_attach\_sns\_topic\_policy) | Determinate to attach policy to `sns_topic` or not | `bool` | `false` | no |
 | <a name="input_create_sns_subscription"></a> [create\_sns\_subscription](#input\_create\_sns\_subscription) | Determinate to create `sns_subscription` resource or not | `bool` | `true` | no |
 | <a name="input_create_sns_topic"></a> [create\_sns\_topic](#input\_create\_sns\_topic) | Determinate to create `sns_topic` resource or not | `bool` | `true` | no |
 | <a name="input_sns_subscription_confirmation_timeout_in_minutes"></a> [sns\_subscription\_confirmation\_timeout\_in\_minutes](#input\_sns\_subscription\_confirmation\_timeout\_in\_minutes) | Integer indicating number of minutes to wait in retrying mode for fetching subscription arn before marking it as failure. Only applicable for http and https protocols. Default is 1 | `number` | `1` | no |
@@ -41,6 +43,7 @@ No resources.
 | <a name="input_sns_topic_application_failure_feedback_role_arn"></a> [sns\_topic\_application\_failure\_feedback\_role\_arn](#input\_sns\_topic\_application\_failure\_feedback\_role\_arn) | IAM role for failure feedback | `string` | `null` | no |
 | <a name="input_sns_topic_application_success_feedback_role_arn"></a> [sns\_topic\_application\_success\_feedback\_role\_arn](#input\_sns\_topic\_application\_success\_feedback\_role\_arn) | IAM role permitted to receive success feedback for this topic | `string` | `null` | no |
 | <a name="input_sns_topic_application_success_feedback_sample_rate"></a> [sns\_topic\_application\_success\_feedback\_sample\_rate](#input\_sns\_topic\_application\_success\_feedback\_sample\_rate) | Percentage of success to sample | `string` | `null` | no |
+| <a name="input_sns_topic_arn"></a> [sns\_topic\_arn](#input\_sns\_topic\_arn) | ARN of the SNS topic | `string` | `null` | no |
 | <a name="input_sns_topic_content_based_deduplication"></a> [sns\_topic\_content\_based\_deduplication](#input\_sns\_topic\_content\_based\_deduplication) | Enables content-based deduplication for FIFO topics | `string` | `null` | no |
 | <a name="input_sns_topic_delivery_policy"></a> [sns\_topic\_delivery\_policy](#input\_sns\_topic\_delivery\_policy) | The SNS delivery policy | `string` | `null` | no |
 | <a name="input_sns_topic_display_name"></a> [sns\_topic\_display\_name](#input\_sns\_topic\_display\_name) | The display name for the topic | `string` | `null` | no |
